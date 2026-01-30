@@ -24,6 +24,8 @@ float get_person_belief_x(const Simulation* simulation,int person_id);
 float get_person_belief_y(const Simulation* simulation,int person_id);
 float get_person_openness(const Simulation* simulation,int person_id);
 
+int get_people_size(const Simulation* simulation);
+
 void set_person_belief_x(const Simulation* simulation,int person_id,float belief_x);
 void set_person_belief_y(const Simulation* simulation,int person_id,float belief_y);
 

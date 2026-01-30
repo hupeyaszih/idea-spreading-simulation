@@ -246,6 +246,10 @@ float get_person_openness(const Simulation *simulation, int person_id){
     return get_person(simulation, person_id)->openness;
 }
 
+int get_people_size(const Simulation *simulation) {
+    return simulation->peopleSize;
+}
+
 ////SETTERS
 void set_person_belief_x(const Simulation *simulation, int person_id, float belief_x){
     get_person(simulation, person_id)->belief_x = belief_x;

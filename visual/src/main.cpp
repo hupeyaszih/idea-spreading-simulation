@@ -7,6 +7,34 @@
 #include "renderer.h"
 #include "simulation.h"
 
+
+void print_stats(const Simulation* simulation) {
+    float sq_sum = sqrtf(2.0f);
+    int people_size = get_people_size(simulation);
+    if (people_size == 0) return;
+
+    float total_r = 0.0f;
+    int radical_count = 0;
+
+    for (int i = 0; i < people_size; i++) {
+        float bx = get_person_belief_x(simulation, i);
+        float by = get_person_belief_y(simulation, i);
+        float r = sqrtf(bx * bx + by * by)/sq_sum;
+
+        total_r += r;
+        if (r > 0.8f) {
+            radical_count++;
+        }
+    }
+
+    float avg_radicalism = total_r / people_size;
+
+    printf("Avg Radicalism: %.2f | Radicals: %d/%d\n",
+           avg_radicalism, radical_count, people_size);
+    fflush(stdout);
+}
+
+
 int main() {
     Simulation* simulation = init_simulation();
     
@@ -47,6 +75,7 @@ int main() {
         SDL_RenderPresent(renderer.sdl_renderer);
 
         t++;
+        if(t % 60 == 0) print_stats(simulation);
         SDL_Delay(16);
     }
 
@@ -54,3 +83,4 @@ int main() {
     delete_simulation(simulation);
     return 0;
 }
+
