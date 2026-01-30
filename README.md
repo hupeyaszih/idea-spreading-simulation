@@ -6,7 +6,7 @@ A 2D simulation of idea spreading among individuals, including social influence,
 
 A 2D simulation that models how ideas and beliefs spread among a population. Each person in the simulation has beliefs represented in 2D space, an openness value, and a set of friends who influence them. Belief updates consider neighbors, friends, repulsion from extreme differences, and a small random noise.
 
-![Simulation Screenshot](screenshot.png) <!-- Eğer bir ekran görüntüsü eklemek istersen -->
+![Simulation Screenshot](screenshots/screenshot_01.png) 
 
 ## Features
 
@@ -35,7 +35,7 @@ cd build
 cmake build ..
 cmake --build .
 ```
-### NOTE
+### NOTE:
 Default parameters are defined in simulation.h:
 
 MAP_WIDTH / MAP_HEIGHT – Size of the 2D grid.
