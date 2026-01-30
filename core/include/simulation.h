@@ -5,8 +5,8 @@
 extern "C"{
 #endif
 
-#define MAP_WIDTH 100
-#define MAP_HEIGHT 100
+#define MAP_WIDTH 250
+#define MAP_HEIGHT 250
 
 #define FRIEND_COUNT 16 
 #define REPULSION_THRESHOLD 0.85f

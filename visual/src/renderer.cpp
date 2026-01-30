@@ -1,4 +1,5 @@
 #include "renderer.h"
+#include "simulation.h"
 #include <iostream>
 
 Renderer::Renderer() : sdl_window(nullptr), sdl_renderer(nullptr) {
@@ -26,7 +27,7 @@ void Renderer::init() {
         exit(1);
     }
 
-    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
+    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
 
     sdl_renderer = SDL_CreateRenderer(sdl_window, -1, renderer_flags);
 
@@ -35,4 +36,12 @@ void Renderer::init() {
         exit(1);
     }
     std::cout << "Initialization finished..." << std::endl;
+
+    texture = SDL_CreateTexture(
+        sdl_renderer, 
+        SDL_PIXELFORMAT_RGBA8888, 
+        SDL_TEXTUREACCESS_STREAMING, 
+        MAP_WIDTH, MAP_HEIGHT
+    );
+
 }

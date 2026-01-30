@@ -2,6 +2,7 @@
 #define RENDERER_H
 
 #include <SDL.h>
+#include <SDL_render.h>
 
 #define SCREEN_WIDTH 500
 #define SCREEN_HEIGHT 500
@@ -14,6 +15,7 @@ class Renderer{
 
         SDL_Window* sdl_window;
         SDL_Renderer* sdl_renderer;
+        SDL_Texture* texture;
 };
 
 #endif
