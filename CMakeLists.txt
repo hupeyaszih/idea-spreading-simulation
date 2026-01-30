@@ -1,19 +1,44 @@
+
 cmake_minimum_required(VERSION 3.16)
 
-project(ideological-compass-model LANGUAGES C)
+project(idea_simulation LANGUAGES C CXX)
 
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-add_executable(ideological-compass-model
-    src/main.c
-    src/simulation.c
+# --- Core library (C) ---
+add_library(idea_simulation_core
+    core/src/simulation.c
 )
 
-target_link_libraries(ideological-compass-model m)
+target_include_directories(idea_simulation_core
+    PUBLIC
+        core/include
+)
 
-target_include_directories(ideological-compass-model
+target_link_libraries(idea_simulation_core
     PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}/include
+        m
+)
+
+# --- SDL2 ---
+find_package(SDL2 REQUIRED)
+
+# --- Visualization (C++) ---
+add_executable(idea_simulation_vis
+    visual/src/main.cpp
+    visual/src/renderer.cpp
+)
+
+target_include_directories(idea_simulation_vis
+    PRIVATE
+        visual/include
+)
+target_link_libraries(idea_simulation_vis
+    PRIVATE
+        idea_simulation_core
+        SDL2::SDL2
 )
